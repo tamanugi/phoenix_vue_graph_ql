@@ -23,4 +23,15 @@ defmodule PhoenixVueGraphQlWeb.Router do
   # scope "/api", PhoenixVueGraphQlWeb do
   #   pipe_through :api
   # end
+
+  forward "/graphql",
+    Absinthe.Plug,
+    schema: PhoenixVueGraphQlWeb.Schema
+
+  # For the GraphiQL interactive interface, a must-have for happy frontend devs.
+  forward "/graphiql",
+    Absinthe.Plug.GraphiQL,
+    schema: PhoenixVueGraphQlWeb.Schema,
+    interface: :simple
+
 end
